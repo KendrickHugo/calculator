@@ -11,8 +11,7 @@ function CalcDisplay({ dispValue }) {
 
 function CalcButton({ label, buttonClassName = 'CalcButton', onClick }) {
   return (
-    // Pass label directly back to the handler on click
-    <button className={buttonClassName} onClick={() => onClick(label)}>
+    <button className={buttonClassName} onClick={onClick}>
       {label}
     </button>
   )
@@ -21,36 +20,22 @@ function CalcButton({ label, buttonClassName = 'CalcButton', onClick }) {
 function App() {
   const [disp, setDisp] = useState('0')
 
-  const handleButtonClick = (val) => {
-    // 1. Clear button logic
-    if (val === 'CLR') {
+  const onClickHandler = (e) => {
+    e.preventDefault()
+    const value = e.target.innerText
+
+    // Clear display back to 0
+    if (value === 'CLR') {
       setDisp('0')
       return
     }
 
-    // 2. Equals/Evaluation logic
-    if (val === '=') {
-      try {
-        // Replace user-friendly characters with standard JS operators
-        const sanitizedExpression = disp
-          .replace(/÷/g, '/')
-          .replace(/X/g, '*')
-
-        // Safely evaluate math expression
-        const result = Function(`"use strict"; return (${sanitizedExpression})`)()
-        setDisp(String(result))
-      } catch (err) {
-        setDisp('Error')
-      }
-      return
-    }
-
-    // 3. Digit and operator input logic
+    // Append clicked keys together instead of replacing the state completely
     setDisp((prev) => {
-      if (prev === '0' || prev === 'Error') {
-        return val
+      if (prev === '0') {
+        return value
       }
-      return prev + val
+      return prev + value
     })
   }
 
@@ -62,26 +47,25 @@ function App() {
       <div className='Calculator'>
         <CalcDisplay dispValue={disp} />
         <div className='CalcButtons'>
-          {/* Note: Fixed lowercase "onclick" to camelCase "onClick" */}
-          <CalcButton label={'7'} onClick={handleButtonClick} />
-          <CalcButton label={'8'} onClick={handleButtonClick} />
-          <CalcButton label={'9'} onClick={handleButtonClick} />
-          <CalcButton label={'÷'} onClick={handleButtonClick} />
+          <CalcButton label={'7'} onClick={onClickHandler} />
+          <CalcButton label={'8'} onClick={onClickHandler} />
+          <CalcButton label={'9'} onClick={onClickHandler} />
+          <CalcButton label={'÷'} onClick={onClickHandler} />
 
-          <CalcButton label={'4'} onClick={handleButtonClick} />
-          <CalcButton label={'5'} onClick={handleButtonClick} />
-          <CalcButton label={'6'} onClick={handleButtonClick} />
-          <CalcButton label={'X'} onClick={handleButtonClick} />
+          <CalcButton label={'4'} onClick={onClickHandler} />
+          <CalcButton label={'5'} onClick={onClickHandler} />
+          <CalcButton label={'6'} onClick={onClickHandler} />
+          <CalcButton label={'X'} onClick={onClickHandler} />
 
-          <CalcButton label={'1'} onClick={handleButtonClick} />
-          <CalcButton label={'2'} onClick={handleButtonClick} />
-          <CalcButton label={'3'} onClick={handleButtonClick} />
-          <CalcButton label={'-'} onClick={handleButtonClick} />
+          <CalcButton label={'1'} onClick={onClickHandler} />
+          <CalcButton label={'2'} onClick={onClickHandler} />
+          <CalcButton label={'3'} onClick={onClickHandler} />
+          <CalcButton label={'-'} onClick={onClickHandler} />
 
-          <CalcButton label={'CLR'} buttonClassName='ClearButton' onClick={handleButtonClick} />
-          <CalcButton label={'0'} onClick={handleButtonClick} />
-          <CalcButton label={'='} onClick={handleButtonClick} />
-          <CalcButton label={'+'} onClick={handleButtonClick} />
+          <CalcButton label={'CLR'} buttonClassName='ClearButton' onClick={onClickHandler} />
+          <CalcButton label={'0'} onClick={onClickHandler} />
+          <CalcButton label={'='} onClick={onClickHandler} />
+          <CalcButton label={'+'} onClick={onClickHandler} />
         </div>
       </div>
     </div>
