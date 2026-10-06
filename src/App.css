@@ -1,0 +1,148 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  background: #0f172a;
+  color: #f8fafc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.App {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+}
+
+.Headers {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.Headers h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: #f1f5f9;
+}
+
+.Headers p {
+  font-size: 0.875rem;
+  color: #64748b;
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Calculator Outer Container */
+.Calculator {
+  width: 360px;
+  padding: 24px;
+  background: rgba(30, 41, 59, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 28px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4),
+              inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+/* Screen Display */
+.CalcDisplay {
+  background: #090d16;
+  border-radius: 16px;
+  padding: 16px 20px;
+  margin-bottom: 20px;
+  text-align: right;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 90px;
+}
+
+.CalcSubDisplay {
+  font-size: 0.875rem;
+  color: #64748b;
+  min-height: 1.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.CalcMainDisplay {
+  font-size: 2.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Button Layout */
+.CalcButtons {
+  display: grid;
+  gap: 12px;
+  grid-template-columns: repeat(4, 1fr);
+}
+
+/* Base Button */
+.CalcButton {
+  height: 64px;
+  border: none;
+  border-radius: 16px;
+  font-size: 1.25rem;
+  font-weight: 600;
+  cursor: pointer;
+  background-color: #334155;
+  color: #f8fafc;
+  transition: all 0.15s ease-in-out;
+  outline: none;
+}
+
+.CalcButton:hover {
+  background-color: #475569;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.CalcButton:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+/* Specialized Buttons */
+.CalcButton.operator {
+  background-color: #3b82f6;
+  color: #ffffff;
+}
+
+.CalcButton.operator:hover {
+  background-color: #60a5fa;
+}
+
+.CalcButton.clear {
+  background-color: #ef4444;
+  color: #ffffff;
+}
+
+.CalcButton.clear:hover {
+  background-color: #f87171;
+}
+
+.CalcButton.equals {
+  background-color: #10b981;
+  color: #ffffff;
+}
+
+.CalcButton.equals:hover {
+  background-color: #34d399;
+}
